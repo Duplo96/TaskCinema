@@ -150,10 +150,10 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-		 DECLARE @RowCount INT;
-			SELECT @RowCount = COUNT(*) FROM Ticket WHERE SeatNumber = @SeatNumber;
+		 
+			SELECT COUNT(*) FROM Ticket WHERE SeatNumber = @SeatNumber;
 
-        IF @RowCount = 0
+        IF @@ROWCOUNT = 0
 			BEGIN
 				INSERT INTO Ticket (TicketID, ShowtimeID, SeatNumber, PurchasedDateTime, CustomerID)
 				VALUES (@TicketID, @ShowTimeID, @SeatNumber, CURRENT_TIMESTAMP, @CustomerID);
